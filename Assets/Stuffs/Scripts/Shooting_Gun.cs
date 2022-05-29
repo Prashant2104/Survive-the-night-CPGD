@@ -4,15 +4,48 @@ using UnityEngine;
 
 public class Shooting_Gun : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] bool rayShoot;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] Transform bulletPrefab;
+    [SerializeField] Transform bulletSpawnPoint;
+
+    [SerializeField] float damage;
+    InputManager inputManager;
+    private void OnEnable()
     {
-        
+        inputManager = FindObjectOfType<InputManager>();
+    }
+    public void Shoot(Vector3 _mouseWorldPos, Transform _hitTrans)
+    {
+        if (this.gameObject == isActiveAndEnabled)
+        {
+            if (rayShoot)
+            {
+                if (_hitTrans != null)
+                {
+                    if (_hitTrans.CompareTag("Target"))
+                    {
+                        Debug.Log("hit");
+                        //Hit target
+                        //Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+                        _hitTrans.GetComponent<ZombieController>().TakeDamage(damage);
+                    }
+                    else
+                    {
+                        // Hit something else
+                        //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
+                        Debug.Log("Not hit");
+                    }
+                    inputManager.shootInput = false;
+                }
+            }
+            else if (!rayShoot)
+            {
+                Vector3 aimDIr = (_mouseWorldPos - bulletSpawnPoint.position).normalized;
+                Instantiate(bulletPrefab, bulletSpawnPoint.position,
+                    Quaternion.LookRotation(aimDIr, Vector3.up));
+                inputManager.shootInput = false;
+            }
+        }
     }
 }

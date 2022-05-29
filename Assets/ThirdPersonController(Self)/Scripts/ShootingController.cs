@@ -17,12 +17,15 @@ public class ShootingController : MonoBehaviour
     Vector3 mouseWorldPosition = Vector3.zero;
 
     [Header("Shooting")]
-    [SerializeField] bool RaycastShooting;
+    Shooting_Gun shooting;
+    [SerializeField] GameObject activeWeapon;
+    [SerializeField] GameObject weaponHandler;
+    /*[SerializeField] bool RaycastShooting;
     [SerializeField] Transform bulletPrefab;
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform vfxHitGreen;
     [SerializeField] Transform vfxHitRed;
-    [SerializeField] float damage;
+    [SerializeField] float damage;*/
     Transform hitTransform = null;
 
     [Header("IK")]
@@ -107,37 +110,23 @@ public class ShootingController : MonoBehaviour
     }
     private void ShootHandling()
     {
-        if(inputManager.shootInput && inputManager.aiming)
+        if (weaponHandler.transform.hasChanged)
         {
-            /**** Bullet Spawning ****/
-            if (!RaycastShooting)
+            for (int i = 0; i < weaponHandler.transform.childCount; i++)
             {
-                Vector3 aimDIr = (mouseWorldPosition - bulletSpawnPoint.position).normalized;
-                Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.LookRotation(aimDIr, Vector3.up));
-                inputManager.shootInput = false;
-            }
-            /**************************/
-
-            /**** Raycast Shooting ***/
-            if (RaycastShooting)
-            {
-                if (hitTransform != null)
+                if (weaponHandler.transform.GetChild(i).gameObject == isActiveAndEnabled)
                 {
-                    if (hitTransform.CompareTag("Target"))
-                    {
-                        //Hit target
-                        //Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
-                        hitTransform.GetComponent<ZombieController>().TakeDamage(damage);
-                    }
-                    else
-                    {
-                        // Hit something else
-                        //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
-                    }
-                    inputManager.shootInput = false;
+                    activeWeapon = weaponHandler.transform.GetChild(i).gameObject;
+                    shooting = activeWeapon.GetComponent<Shooting_Gun>();
                 }
             }
-            /**************************/
+        }
+        if (activeWeapon != null && activeWeapon == isActiveAndEnabled)
+        {
+            if (inputManager.shootInput && inputManager.aiming)
+            {
+                shooting.Shoot(mouseWorldPosition, hitTransform);
+            }
         }
     }
 }

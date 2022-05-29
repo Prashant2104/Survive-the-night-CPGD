@@ -50,6 +50,7 @@ public class PlayerManager : MonoBehaviour
             inventory.AddItem(mItemToPick);
             mItemToPick.OnPickup();
             hud.CloseMessagePanel("");
+            mItemToPick = null;
         }
     }
 
