@@ -248,18 +248,9 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Save"",
+                    ""name"": ""PickUp"",
                     ""type"": ""Button"",
                     ""id"": ""61ac229b-3bb2-40ba-9bf4-6f84a17bcaf1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Load"",
-                    ""type"": ""Button"",
-                    ""id"": ""894b0a47-1ac1-4b4c-b852-24ef72cba491"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -332,11 +323,11 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
                 {
                     ""name"": """",
                     ""id"": ""ac35af61-14bf-440d-8b70-ada399522159"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Save"",
+                    ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -347,29 +338,7 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Save"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d1ec0498-7b1f-42dc-928d-fc0e3e269689"",
-                    ""path"": ""<Keyboard>/o"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Load"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be25fcb7-b59b-47e1-beb3-d8f48b93e77f"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Load"",
+                    ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -430,8 +399,7 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerActions_Save = m_PlayerActions.FindAction("Save", throwIfNotFound: true);
-        m_PlayerActions_Load = m_PlayerActions.FindAction("Load", throwIfNotFound: true);
+        m_PlayerActions_PickUp = m_PlayerActions.FindAction("PickUp", throwIfNotFound: true);
         m_PlayerActions_Aim = m_PlayerActions.FindAction("Aim", throwIfNotFound: true);
         m_PlayerActions_Shoot = m_PlayerActions.FindAction("Shoot", throwIfNotFound: true);
     }
@@ -536,8 +504,7 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Jump;
-    private readonly InputAction m_PlayerActions_Save;
-    private readonly InputAction m_PlayerActions_Load;
+    private readonly InputAction m_PlayerActions_PickUp;
     private readonly InputAction m_PlayerActions_Aim;
     private readonly InputAction m_PlayerActions_Shoot;
     public struct PlayerActionsActions
@@ -546,8 +513,7 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
         public PlayerActionsActions(@ThirdPersonPlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
-        public InputAction @Save => m_Wrapper.m_PlayerActions_Save;
-        public InputAction @Load => m_Wrapper.m_PlayerActions_Load;
+        public InputAction @PickUp => m_Wrapper.m_PlayerActions_PickUp;
         public InputAction @Aim => m_Wrapper.m_PlayerActions_Aim;
         public InputAction @Shoot => m_Wrapper.m_PlayerActions_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
@@ -565,12 +531,9 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
                 @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
-                @Save.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSave;
-                @Save.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSave;
-                @Save.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSave;
-                @Load.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLoad;
-                @Load.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLoad;
-                @Load.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLoad;
+                @PickUp.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPickUp;
+                @PickUp.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPickUp;
+                @PickUp.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPickUp;
                 @Aim.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAim;
@@ -587,12 +550,9 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Save.started += instance.OnSave;
-                @Save.performed += instance.OnSave;
-                @Save.canceled += instance.OnSave;
-                @Load.started += instance.OnLoad;
-                @Load.performed += instance.OnLoad;
-                @Load.canceled += instance.OnLoad;
+                @PickUp.started += instance.OnPickUp;
+                @PickUp.performed += instance.OnPickUp;
+                @PickUp.canceled += instance.OnPickUp;
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
@@ -612,8 +572,7 @@ public partial class @ThirdPersonPlayerController : IInputActionCollection2, IDi
     {
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSave(InputAction.CallbackContext context);
-        void OnLoad(InputAction.CallbackContext context);
+        void OnPickUp(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
     }

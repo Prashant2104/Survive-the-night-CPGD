@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     ThirdPersonPlayerController playerControls;
     PlayerMotion playerMotion;
     AnimatorManager animatorManager;
+    PlayerManager player;
 
     [SerializeField] Vector2 movementInput;
     [SerializeField] Vector2 cameraInput;
@@ -30,6 +31,7 @@ public class InputManager : MonoBehaviour
     {
         animatorManager = GetComponent<AnimatorManager>();
         playerMotion = GetComponent<PlayerMotion>();
+        player = GetComponent<PlayerManager>();
     }
 
     private void OnEnable()
@@ -51,6 +53,8 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.Shoot.performed += i => shootInput = true;
             playerControls.PlayerActions.Shoot.canceled += i => shootInput = false;
+
+            playerControls.PlayerActions.PickUp.performed += i => player.ItemPickUp();
         }
         playerControls.Enable();
     }
@@ -84,7 +88,6 @@ public class InputManager : MonoBehaviour
         else
             playerMotion.IsSprinting = false;
     }
-
     private void HandleJumpInput()
     {
         if (JumpInput)

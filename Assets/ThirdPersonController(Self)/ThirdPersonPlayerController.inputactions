@@ -226,18 +226,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Save",
+                    "name": "PickUp",
                     "type": "Button",
                     "id": "61ac229b-3bb2-40ba-9bf4-6f84a17bcaf1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Load",
-                    "type": "Button",
-                    "id": "894b0a47-1ac1-4b4c-b852-24ef72cba491",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -310,11 +301,11 @@
                 {
                     "name": "",
                     "id": "ac35af61-14bf-440d-8b70-ada399522159",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Save",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -325,29 +316,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Save",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d1ec0498-7b1f-42dc-928d-fc0e3e269689",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Load",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "be25fcb7-b59b-47e1-beb3-d8f48b93e77f",
-                    "path": "<Gamepad>/rightStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Load",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

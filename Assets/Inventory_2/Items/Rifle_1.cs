@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rifle_1 : MonoBehaviour, IInventoryItems
 {
+    public InventorySlot Slot { get; set; }
+
     public string Name
     {
         get { return "Rifle_1"; }
@@ -17,6 +19,10 @@ public class Rifle_1 : MonoBehaviour, IInventoryItems
     {
         // TODO: Add logic what happens when axe is picked up by player
         gameObject.SetActive(false);
+    }
+    public void OnUse()
+    {
+
     }
     public void OnDrop()
     {
