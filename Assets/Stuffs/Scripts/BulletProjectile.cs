@@ -19,6 +19,7 @@ public class BulletProjectile : MonoBehaviour
     private void OnEnable()
     {
         rb.velocity = transform.forward * speed;
+        //Invoke("DisableProjectile", 5f);
     }
     private void Update()
     {
@@ -37,8 +38,12 @@ public class BulletProjectile : MonoBehaviour
                 //Hit something else
                 //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
             }
-            Destroy(this.gameObject);
+            DisableProjectile();
         }
         Debug.DrawRay(transform.position, transform.forward, Color.red);
+    }
+    private void DisableProjectile()
+    {
+        gameObject.SetActive(false);
     }
 }

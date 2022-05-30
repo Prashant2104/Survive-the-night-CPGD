@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject spawnPointsParent;
     [SerializeField] GameObject[] spawnPoints;
     [SerializeField] GameObject[] zombies;
-
-    [SerializeField] int width, height;
+    [SerializeField] GameObject[] collectibles;
 
     int randomChoice_1;
     int randomChoice_2;
@@ -25,7 +24,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.End))
             SpawnZombies(Random.Range(2, 10));
     }
-
     public void SpawnZombies(int _lvl)
     {
         for (int i = 0; i < spawnPoints.Length; i++)
@@ -34,7 +32,7 @@ public class GameManager : MonoBehaviour
             if (randomChoice_1 == 1)
             {
                 spawnPoints[i].SetActive(true);
-                for (int j = 0; j < _lvl; ++j)
+                for (int j = 0; j < _lvl/2; ++j)
                 {
                     randomChoice_1 = Random.Range(0, zombies.Length);
                     randomChoice_2 = Random.Range(0, 2);
@@ -46,8 +44,7 @@ public class GameManager : MonoBehaviour
                         case 1:
                             Instantiate(zombies[randomChoice_1], spawnPoints[i].transform.position + new Vector3(0, 0, j), Quaternion.identity);
                             break;
-                    }
-                   
+                    }                   
                 }
             }
             else

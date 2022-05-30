@@ -22,6 +22,11 @@ public class ZombieController : MonoBehaviour
     [SerializeField] float minHealth;
     [SerializeField] float maxHealth;
 
+    [Header("Damage")]
+    [SerializeField] float lightDamage;
+    [SerializeField] float heavyDamage;
+    [SerializeField] float biteDamage;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -30,6 +35,9 @@ public class ZombieController : MonoBehaviour
 
         sightDistance = Random.Range(minSightDistance, maxSightDistance);
         currentHealth = Random.Range(minHealth, maxHealth);
+        lightDamage = Random.Range(2, 7);
+        heavyDamage = Random.Range(8, 16);
+        biteDamage = Random.Range(15, 20);
         StartCoroutine(TriggerCheck());
     }
     private void Update()
@@ -69,6 +77,21 @@ public class ZombieController : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
             anim.SetTrigger("Dead");
+    }
+    public void LightAttack()
+    {
+        if(anim.GetFloat("Distance") < 1.5)
+            player.GetComponent<PlayerManager>().TakeDamage(lightDamage);
+    }
+    public void HeavyAttack()
+    {
+        if (anim.GetFloat("Distance") < 1.5)
+            player.GetComponent<PlayerManager>().TakeDamage(heavyDamage);
+    }
+    public void BiteAttack()
+    {
+        if (anim.GetFloat("Distance") < 1.5)
+            player.GetComponent<PlayerManager>().TakeDamage(biteDamage);
     }
     private void OnDrawGizmos()
     {
