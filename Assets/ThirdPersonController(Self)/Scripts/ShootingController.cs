@@ -110,17 +110,6 @@ public class ShootingController : MonoBehaviour
     }
     private void ShootHandling()
     {
-        if (weaponHandler.transform.hasChanged)
-        {
-            for (int i = 0; i < weaponHandler.transform.childCount; i++)
-            {
-                if (weaponHandler.transform.GetChild(i).gameObject == isActiveAndEnabled)
-                {
-                    activeWeapon = weaponHandler.transform.GetChild(i).gameObject;
-                    shooting = activeWeapon.GetComponent<Shooting_Gun>();
-                }
-            }
-        }
         if (activeWeapon != null && activeWeapon == isActiveAndEnabled)
         {
             if (inputManager.shootInput && inputManager.aiming)
@@ -128,5 +117,19 @@ public class ShootingController : MonoBehaviour
                 shooting.Shoot(mouseWorldPosition, hitTransform);
             }
         }
+    }
+
+    public void SwitchWeapon(GameObject _weapon)
+    {
+        activeWeapon = _weapon;
+        shooting = activeWeapon.GetComponent<Shooting_Gun>();
+        /*for (int i = 0; i < weaponHandler.transform.childCount; i++)
+        {
+            if (weaponHandler.transform.GetChild(i).gameObject == isActiveAndEnabled)
+            {
+                activeWeapon = weaponHandler.transform.GetChild(i).gameObject;
+                
+            }
+        }*/
     }
 }

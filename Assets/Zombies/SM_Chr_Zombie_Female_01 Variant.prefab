@@ -233,15 +233,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4379659365344250, guid: 807784d16a875e0499c116c9506424aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4379659365344250, guid: 807784d16a875e0499c116c9506424aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4379659365344250, guid: 807784d16a875e0499c116c9506424aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -112.37001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4379659365344250, guid: 807784d16a875e0499c116c9506424aa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -284,6 +284,11 @@ PrefabInstance:
 --- !u!1 &1695709346731031580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1015224441584018, guid: 807784d16a875e0499c116c9506424aa, type: 3}
+  m_PrefabInstance: {fileID: 1696667379247039886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1694956624492085648 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4072505749308446, guid: 807784d16a875e0499c116c9506424aa, type: 3}
   m_PrefabInstance: {fileID: 1696667379247039886}
   m_PrefabAsset: {fileID: 0}
 --- !u!136 &3698383398523133329
@@ -338,6 +343,10 @@ MonoBehaviour:
   zombies:
     serializedVersion: 2
     m_Bits: 64
+  head: {fileID: 1694956624492085648}
+  minSightDistance: 5
+  maxSightDistance: 10
+  sightDistance: 0
   currentHealth: 0
-  minHealth: 0
-  maxHealth: 0
+  minHealth: 10
+  maxHealth: 20

@@ -9,8 +9,13 @@ public class ZombieController : MonoBehaviour
 
     private PlayerManager player;
     private Animator anim;
+    [Header("Player Check Requirements")]
     public NavMeshAgent agent;
     [SerializeField] LayerMask zombies;
+    [SerializeField] Transform head;
+    [SerializeField] float minSightDistance;
+    [SerializeField] float maxSightDistance;
+    [SerializeField] float sightDistance;
 
     [Header("Health")]
     [SerializeField] float currentHealth;
@@ -23,6 +28,7 @@ public class ZombieController : MonoBehaviour
         player = FindObjectOfType<PlayerManager>();
         agent = GetComponent<NavMeshAgent>();
 
+        sightDistance = Random.Range(minSightDistance, maxSightDistance);
         currentHealth = Random.Range(minHealth, maxHealth);
         StartCoroutine(TriggerCheck());
     }
@@ -32,7 +38,7 @@ public class ZombieController : MonoBehaviour
         anim.SetFloat("Distance", distance);
 
         RaycastHit hit;
-        if(Physics.Raycast((this.transform.position + new Vector3(0,1.5f,0)), Vector3.forward, out hit, 8f))
+        if(Physics.Raycast((head.position + new Vector3(0,1.5f,0)), Vector3.forward, out hit, sightDistance))
         {
             if (hit.transform.CompareTag("Player"))
                 anim.SetBool("Triggered", true);
@@ -66,6 +72,6 @@ public class ZombieController : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay((this.transform.position + new Vector3(0, 1.5f, 0)), Vector3.forward);
+        Gizmos.DrawRay(head.position, Vector3.forward);
     }
 }

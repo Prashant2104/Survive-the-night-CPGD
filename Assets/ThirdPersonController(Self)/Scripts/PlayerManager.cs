@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     InputManager inputManager;
     PlayerMotion playerMotion;
+    ShootingController shootingController;
     Animator anim;
 
     public bool isInteracting;
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     {
         inputManager = GetComponent<InputManager>();
         playerMotion = GetComponent<PlayerMotion>();
+        shootingController = GetComponent<ShootingController>();
         anim = GetComponent<Animator>();
 
         inventory.ItemUsed += Inventory_ItemUsed;
@@ -42,6 +44,8 @@ public class PlayerManager : MonoBehaviour
         goItem.transform.localPosition = Vector3.zero;
         goItem.transform.localRotation = Quaternion.Euler(Vector3.zero);
         goItem.GetComponent<Collider>().enabled = false;
+
+        shootingController.SwitchWeapon(goItem);
     }
     public void ItemPickUp()
     {

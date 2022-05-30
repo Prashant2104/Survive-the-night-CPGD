@@ -233,15 +233,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4183049840701662, guid: 115e889341316e74b9a33d9cbcdd61b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4183049840701662, guid: 115e889341316e74b9a33d9cbcdd61b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4183049840701662, guid: 115e889341316e74b9a33d9cbcdd61b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -112.37001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4183049840701662, guid: 115e889341316e74b9a33d9cbcdd61b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -286,6 +286,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1300917902799776, guid: 115e889341316e74b9a33d9cbcdd61b2, type: 3}
   m_PrefabInstance: {fileID: 1147089583850432189}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1151553868269733717 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4613286566126056, guid: 115e889341316e74b9a33d9cbcdd61b2, type: 3}
+  m_PrefabInstance: {fileID: 1147089583850432189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!136 &7381524263573515408
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -316,9 +321,13 @@ MonoBehaviour:
   zombies:
     serializedVersion: 2
     m_Bits: 64
+  head: {fileID: 1151553868269733717}
+  minSightDistance: 5
+  maxSightDistance: 10
+  sightDistance: 0
   currentHealth: 0
-  minHealth: 0
-  maxHealth: 0
+  minHealth: 10
+  maxHealth: 20
 --- !u!195 &6404959873693370353
 NavMeshAgent:
   m_ObjectHideFlags: 0

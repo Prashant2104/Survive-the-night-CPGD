@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     PlayerMotion playerMotion;
     AnimatorManager animatorManager;
     PlayerManager player;
+    [SerializeField] GameManager manager;
 
     [SerializeField] Vector2 movementInput;
     [SerializeField] Vector2 cameraInput;
