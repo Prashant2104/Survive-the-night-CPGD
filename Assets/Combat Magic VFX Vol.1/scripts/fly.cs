@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class fly : MonoBehaviour 
 {
-	void Update ()
+    Rigidbody rb;
+    [SerializeField] float speed;
+    private void Awake()
     {
-        transform.Translate(new Vector3(0.0f, 0.0f, 0.2f)); 
+        rb = GetComponent<Rigidbody>();
+    }
+    void Update ()
+    {
+        rb.velocity = transform.forward * speed;
     }
 }
