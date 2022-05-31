@@ -713,7 +713,8 @@ MonoBehaviour:
     Have fun.
 
 
-    PS. I haven''t slept in two days, pls marks dedo'
+    PS. I named it because I have been trying to survive
+    two nights in a row without sleep'
 --- !u!222 &773143479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -739,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &796789644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1041,7 +1042,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Survivor
+  m_Text: SUrvive the Night
 --- !u!222 &1491732369
 CanvasRenderer:
   m_ObjectHideFlags: 0
