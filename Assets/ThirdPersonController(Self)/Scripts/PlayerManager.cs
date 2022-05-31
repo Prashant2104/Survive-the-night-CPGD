@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,11 +12,16 @@ public class PlayerManager : MonoBehaviour
 
     public bool isInteracting;
     public CameraManager cameraManager;
+    public GameManager manager;
 
+    [Header("Inventory")]
     public InventoryManager inventory;
     public GameObject playerHand;
     public HUD hud;
 
+    [Header("Healt")]
+    public float maxHealth;
+    public Slider healthBar;
     public float health;
 
     void Awake()
@@ -26,6 +32,9 @@ public class PlayerManager : MonoBehaviour
         anim = GetComponent<Animator>();
 
         inventory.ItemUsed += Inventory_ItemUsed;
+
+        health = maxHealth;
+        healthBar.maxValue = maxHealth;
     }
 
     private void Inventory_ItemUsed(object sender, InventoryEventArgs e)
@@ -77,6 +86,7 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        healthBar.value = health;
         if (health <= 0)
             Destroy(gameObject);
     }
@@ -95,6 +105,10 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
+        if(collision.transform.CompareTag("Finish"))
+        {
+            manager.Pass();
+        }
         IInventoryItems item = collision.collider.GetComponent<IInventoryItems>();
         if (item != null)
         {

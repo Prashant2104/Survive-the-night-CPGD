@@ -29,15 +29,15 @@ public class Shooting_Gun : MonoBehaviour
                     if (_hitTrans.CompareTag("Target"))
                     {
                         Debug.Log("hit");
-                        //Hit target
-                        //Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+                        //GameObject vfx = Instantiate(hitVFX, _hitTrans.position, Quaternion.identity);
+                        //Destroy(vfx, 1f);
                         _hitTrans.GetComponent<ZombieController>().TakeDamage(damage);
                     }
                     else
                     {
-                        // Hit something else
-                        //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
                         Debug.Log("Not hit");
+                        //GameObject vfx = Instantiate(hitVFX, _hitTrans.position, Quaternion.identity);
+                        //Destroy(vfx, 1f);
                     }
                     inputManager.shootInput = false;
                 }
