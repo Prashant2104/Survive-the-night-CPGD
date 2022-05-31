@@ -2103,8 +2103,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   head: {fileID: 3616454686185326085}
-  minSightDistance: 5
-  maxSightDistance: 10
+  minSightDistance: 7
+  maxSightDistance: 11
   sightDistance: 0
   currentHealth: 0
   minHealth: 10

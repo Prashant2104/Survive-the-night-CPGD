@@ -58,12 +58,12 @@ public class ZombieController : MonoBehaviour
     IEnumerator TriggerCheck()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(this.transform.position, 5f, player.transform.position - this.transform.position, out hit, 10f, zombies))
+        if (Physics.SphereCast(this.transform.position, 5f, player.transform.position - this.transform.position, out hit, 7f))
         {
-            if (hit.transform.GetComponent<ZombieController>().anim.GetBool("Triggered"))
+            if (hit.transform.GetComponent<ZombieController>().anim.GetBool("Triggered") || hit.transform.CompareTag("Player"))
                 anim.SetBool("Triggered", true);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         StartCoroutine(TriggerCheck());
     }
     public GameObject GetPlayer()
