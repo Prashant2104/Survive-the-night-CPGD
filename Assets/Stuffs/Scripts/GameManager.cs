@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
             spawnPoints[i] = spawnPointsParent.transform.GetChild(i).gameObject;
             spawnPoints[i].SetActive(false);
         }
+        SpawnZombies(4);
     }
     private void Update()
     {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     public void SpawnZombies(int _lvl)
     {
         for (int i = 0; i < spawnPoints.Length; i++)
-        {
+        {            
             randomChoice_1 = Random.Range(0, 2);
             if (randomChoice_1 == 1)
             {

@@ -9,7 +9,7 @@ public class Shooting_Gun : MonoBehaviour
     [SerializeField] bool spear;
     [SerializeField] bool flame;
 
-    [SerializeField] Transform bulletPrefab;
+    //[SerializeField] Transform bulletPrefab;
     [SerializeField] Transform bulletSpawnPoint;
 
     [SerializeField] float damage;
@@ -58,7 +58,7 @@ public class Shooting_Gun : MonoBehaviour
                 }
                 else if (spear)
                 {
-                    GameObject bullet = ObjectPool_SpearGun.SharedInstance.GetPooledObject(); 
+                    GameObject bullet = ObjectPool_SpearGun.SharedInstance.GetPooledObject();
                     if (bullet != null)
                     {
                         bullet.transform.position = bulletSpawnPoint.transform.position;
@@ -76,7 +76,6 @@ public class Shooting_Gun : MonoBehaviour
                         bullet.SetActive(true);
                     }
                 }
-                
                 inputManager.shootInput = false;
             }
         }

@@ -19,7 +19,7 @@ public class BulletProjectile : MonoBehaviour
     private void OnEnable()
     {
         rb.velocity = transform.forward * speed;
-        //Invoke("DisableProjectile", 5f);
+        Invoke("DisableProjectile", 5f);
     }
     private void Update()
     {
