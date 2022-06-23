@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fly : MonoBehaviour 
-{
-    Rigidbody rb;
-    [SerializeField] float speed;
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+public class fly : MonoBehaviour
+{ 
     void Update ()
     {
-        rb.velocity = transform.forward * speed;
+        this.transform.Translate(Vector3.forward * Time.deltaTime);
     }
 }
